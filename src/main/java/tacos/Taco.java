@@ -5,11 +5,10 @@ import jakarta.validation.constraints.Size;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
-
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
 
 @Data
 @Table(name = "Taco")
@@ -29,5 +28,4 @@ public class Taco {
   public void addIngredient(Ingredient taco) {
     this.ingredients.add(new IngredientRef(taco.getId()));
   }
-
 }
