@@ -1,4 +1,4 @@
-package tacos.web;
+package tacos.controllers;
 
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
-import tacos.TacoOrder;
-import tacos.data.OrderRepository;
+import tacos.models.TacoOrder;
+import tacos.repositories.OrderRepository;
 
 @Controller
 @RequestMapping("/orders")
@@ -38,5 +38,4 @@ public class OrderController {
 
     return "redirect:/";
   }
-
 }
