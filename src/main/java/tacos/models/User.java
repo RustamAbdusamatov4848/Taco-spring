@@ -19,30 +19,31 @@ public class User implements UserDetails {
     private static final long serialVersionUID = -7332611668858971321L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
-    @Column(nullable = false, unique = true)
+    @Column(name = "username")
     private String username;
 
-    @Column(nullable = false)
+    @Column(name = "password")
     private String password;
 
-    @Column(nullable = false)
-    private String fullname;
+    @Column(name = "email",unique = true)
+    private String email;
 
-    @Column(nullable = false)
+    @Column(name = "city")
     private String city;
 
-    @Column(nullable = false)
+    @Column(name = "street")
     private String street;
 
-    @Column(nullable = false)
+    @Column(name = "state")
     private String state;
 
-    @Column(nullable = false)
+    @Column(name = "zip")
     private String zip;
 
-    @Column(nullable = false)
+    @Column(name = "phone_number",unique = true)
     private String phoneNumber;
 
     @Override

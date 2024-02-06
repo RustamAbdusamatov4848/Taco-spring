@@ -1,44 +1,34 @@
 package tacos.controllers;
 
-import org.springframework.security.crypto.password.PasswordEncoder;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import tacos.models.User;
-import tacos.repositories.UserRepository;
 import org.springframework.ui.Model;
-import org.springframework.security.core.Authentication;
+import tacos.services.UserService;
+
 @Controller
+@RequiredArgsConstructor
 public class UserController {
-    private final UserRepository userRepository;
-    private final PasswordEncoder passwordEncoder;
+    private final UserService service;
 
-    public UserController(UserRepository userRepository, PasswordEncoder passwordEncoder) {
-        this.userRepository = userRepository;
-        this.passwordEncoder = passwordEncoder;
+    @GetMapping("/registration")
+    public String registration(){
+        return "registration";
     }
-
     @GetMapping("/login")
-    public String showLoginForm(Model model) {
+    public String login(){
         return "login";
     }
 
-    @GetMapping("/registration")
-    public String showRegistrationForm(Model model) {
-        model.addAttribute("user", new User());
-        return "registration";
-    }
-
     @PostMapping("/registration")
-    public String registerUser(User user) {
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        userRepository.save(user);
+    public String createUser(User user, Model model){
+        if (!service.createUser(user)){
+            model.addAttribute("errorMassage",
+                    "User with email " + user.getEmail() + " already exist");
+            return "registration";
+        }
         return "redirect:/login";
-    }
-    @GetMapping("/user")
-    public String showUser(Model model, Authentication authentication) {
-        User user = (User) authentication.getPrincipal();
-        model.addAttribute("user", user);
-        return "user";
     }
 }

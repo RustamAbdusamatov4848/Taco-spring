@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import tacos.models.Ingredient;
 import tacos.models.Taco;
 import tacos.models.TacoOrder;
-import tacos.models.types.TypeIngredient;
+import tacos.models.enums.TypeIngredient;
 import tacos.repositories.IngredientRepository;
 
 import java.util.stream.Collectors;

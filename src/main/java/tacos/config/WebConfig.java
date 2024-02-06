@@ -7,7 +7,8 @@ import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import tacos.models.Ingredient;
 import tacos.repositories.IngredientRepository;
-import static tacos.models.types.TypeIngredient.*;
+
+import static tacos.models.enums.TypeIngredient.*;
 
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
