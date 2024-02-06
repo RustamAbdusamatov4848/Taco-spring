@@ -63,6 +63,9 @@ public class TacoOrder implements Serializable {
   @OneToMany(cascade = CascadeType.ALL)
   @JoinColumn(name = "taco_id")
   private List<Taco> tacos = new ArrayList<>();
+
+  @ManyToOne
+  private User user;
   @PrePersist
   private void init() {
     dateOfCreated = LocalDateTime.now();
