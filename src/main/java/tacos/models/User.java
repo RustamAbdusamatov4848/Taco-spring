@@ -1,6 +1,9 @@
 package tacos.models;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -43,6 +46,8 @@ public class User implements UserDetails {
     @Column(name = "zip")
     private String zip;
 
+    @Pattern(regexp = "^8\\d{10}$")
+    @Size(min = 11,max = 11,message = "phone number should contain 11 digits")
     @Column(name = "phone_number",unique = true)
     private String phoneNumber;
 
