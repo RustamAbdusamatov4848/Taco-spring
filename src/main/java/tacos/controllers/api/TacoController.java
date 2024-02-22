@@ -22,25 +22,22 @@ public class TacoController {
   public TacoController(TacoRepository tacoRepo) {
     this.tacoRepo = tacoRepo;
   }
-
   @GetMapping(params="recent")
   public Iterable<Taco> recentTacos() {
     PageRequest page = PageRequest.of(
             0, 12, Sort.by("dateOfCreated").descending());
     return tacoRepo.findAll(page).getContent();
   }
-
-  @PostMapping(consumes="application/json")
-  @ResponseStatus(HttpStatus.CREATED)
-  public Taco postTaco(@RequestBody Taco taco) {
-    return tacoRepo.save(taco);
-  }
-
   @GetMapping("/{id}")
   public ResponseEntity<Taco> getTacoById(@PathVariable("id") Long id){
     Optional<Taco> tacoOptional = tacoRepo.findById(id);
     return tacoOptional.isPresent() ?
             new ResponseEntity<>(tacoOptional.get(),HttpStatus.OK) :
             new ResponseEntity<>(null,HttpStatus.NOT_FOUND);
+  }
+  @PostMapping(consumes="application/json")
+  @ResponseStatus(HttpStatus.CREATED)
+  public Taco postTaco(@RequestBody Taco taco) {
+    return tacoRepo.save(taco);
   }
 }
