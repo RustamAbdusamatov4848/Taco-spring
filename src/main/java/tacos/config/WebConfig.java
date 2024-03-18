@@ -63,8 +63,8 @@ public class WebConfig implements WebMvcConfigurer {
       User user = new User();
       user.setId(1L);
       user.setUsername("Rustam");
-      user.setPassword(passwordEncoder.encode("12100"));
-      user.setEmail("korolev.rust@yandex.ru");
+      user.setPassword(passwordEncoder.encode("1246100"));
+      user.setEmail("korolev.rudfrsttml@yandex.ru");
       user.setCity("Moscow");
       user.setStreet("Lenina street");
       user.setState("Russia");
